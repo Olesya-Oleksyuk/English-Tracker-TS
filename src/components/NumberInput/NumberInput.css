@@ -1,0 +1,18 @@
+.custom-input {
+  box-sizing: border-box;
+  display: block;
+  height: 100%;
+  width: 70px;
+  text-align: center;
+  border: none;
+  background: #fff;
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+
+.custom-input:focus-visible {
+  border: none;
+  outline: none;
+}

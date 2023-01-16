@@ -1,0 +1,40 @@
+.loading-box {
+  box-sizing: border-box;
+  margin: 0 auto;
+  height: 20px;
+}
+
+.loading {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.loading {
+  --shadow-color: #fcfcfc;
+  background: linear-gradient(
+    90deg,
+    var(--shadow-color),
+    var(--shadow-color),
+    var(--shadow-color),
+    var(--shadow-color),
+    var(--shadow-color),
+    var(--shadow-color),
+    #eee,
+    var(--shadow-color),
+    var(--shadow-color),
+    var(--shadow-color),
+    var(--shadow-color),
+    var(--shadow-color)
+  );
+  background-size: 400% 100%;
+  animation: loading 1s infinite;
+}
+@keyframes loading {
+  0% {
+    background-position: 0 0%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
+}

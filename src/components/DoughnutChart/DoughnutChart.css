@@ -1,0 +1,24 @@
+.chart-wrapper-plugin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/*.chart-wrapper-plugin > div:first-child {*/
+/*    position: relative;*/
+/*    display: block;*/
+/*    height: 236px;*/
+/*    width: 236px;*/
+/*    box-sizing: border-box;*/
+/*    margin-right: 12px;*/
+/*}*/
+
+.doughnut-container {
+    position: relative;
+    display: block;
+    height: 500px;
+    width: 500px;
+    box-sizing: border-box;
+    margin-right: 50px;
+}

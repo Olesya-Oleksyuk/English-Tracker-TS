@@ -1,0 +1,90 @@
+
+.todo-item {
+  box-sizing: border-box;
+  display: inline-flex;
+  list-style-type: none;
+  align-self: start;
+
+  flex-grow: 1;
+  font-size: 18px
+}
+
+.todo-item-description {
+  padding-right: 10px;
+  padding-top: 8px;
+}
+
+.todo-item-category {
+  flex: 0 0 130px;
+  padding-top: 8px;
+}
+
+
+.todo-item-amount {
+  flex: 0 0 70px;
+  text-align: center;
+}
+
+.todo-item-date {
+  flex: 0 0 50px;
+  margin-left: 10px;
+}
+
+.todo{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  align-content: center;
+  gap: 5px;
+  border-bottom: 2px solid #E1E0E1;
+  padding: 15px 10px;
+}
+
+.fa-circle {
+  font-size: 25px;
+  color: #E1E0E1;;
+}
+
+.fa-check {
+  color: green;
+}
+
+.fa-trash-alt {
+  font-size: 20px;
+  color: #b9b8b9;;
+}
+
+
+.trash-btn {
+  box-sizing: border-box;
+  height: 42px;
+  margin: 0 10px 0 4px;
+  padding: 0;
+  flex: 0 0 34px;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #c0bfc0;
+}
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.complete-btn {
+  height: fit-content;
+}
+
+.complete-btn-icon {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.complete-btn-icon .fa-check {
+  margin-top: 2px;
+}

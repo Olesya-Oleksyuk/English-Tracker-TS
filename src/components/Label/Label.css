@@ -1,0 +1,45 @@
+.colored-label {
+  display: inline-block;
+  box-sizing: border-box;
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+  padding: 8px 21px;
+  border-radius: 10px;
+  color: white;
+}
+
+.primary {
+  background: #45ca4f94;
+}
+
+.secondary {
+  background: #27aebf94;
+}
+
+.danger {
+  background: #f83f2a94;
+}
+
+.disabled {
+  text-decoration: line-through rgba(92, 96, 92, 0.58);
+  background: #a5afa694;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.demo {
+  font-family: "Nunito", sans-serif;
+  color: #595959;
+}
+
+.demo:hover {
+  background: #c1548a;
+  color: white;
+}
+
+.demo button {
+  font: inherit;
+  color: inherit;
+  cursor: inherit;
+}

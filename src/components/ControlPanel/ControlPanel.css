@@ -1,0 +1,35 @@
+.control-panel {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+
+  box-sizing: border-box;
+  margin: 12px 25px;
+  color: #a0a0a0;
+  font-size: 15px;
+}
+
+.control-radios {
+  justify-self: center;
+  display: flex;
+}
+
+.control-clear-completed {
+  justify-self: end;
+}
+
+.control-radios input {
+  appearance: none;
+  outline: none;
+}
+
+.control-radios label {
+  margin: auto 0;
+  color: #2e2d2d;
+}
+
+input:checked + label {
+  border: solid #a0a0a0 2px;
+  border-radius: 7px;
+  padding: 8px 6px;
+}

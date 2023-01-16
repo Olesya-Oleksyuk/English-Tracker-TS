@@ -1,0 +1,15 @@
+.todo-container {
+  max-height: 390px;
+  overflow-y: scroll;
+  padding: 0;
+}
+
+.todo-container::-webkit-scrollbar {
+  display: none;
+}
+
+.todo-list {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+}
