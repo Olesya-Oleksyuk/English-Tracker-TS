@@ -1,4 +1,4 @@
-const sectorsColors = [
+export const sectorsColors = [
   '#faf1e2',
   '#ffcec7',
   '#382c9c',

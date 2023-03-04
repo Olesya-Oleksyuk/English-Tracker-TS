@@ -1,8 +1,10 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { Chart } from 'chart.js';
 
-import DoughnutLegend, {
+import {
+  DoughnutLegend,
   getDoughnutCustomLegendOptions,
 } from './Plugins/DoughnutLegend';
 import getDoughnutCustomLabels from './Plugins/DoughnutCustomLabels';
@@ -10,11 +12,11 @@ import getDoughnutCustomLabels from './Plugins/DoughnutCustomLabels';
 import './DoughnutChart.css';
 
 // Отрисовка центрального лейбла, который равен суммарному значению датасета;
-const centerLabel = (total) => ({
+const centerLabel = (total: number) => ({
   // id для регистрации плагина в пропсе графика - plugins
   id: 'centerLabelPlugin',
   // Вызывается перед отрисовкой графика каждого кадра анимации (стадия Rendering);
-  beforeDraw: (chart) => {
+  beforeDraw: (chart: Chart) => {
     const {
       ctx,
       chartArea: { width, height },
@@ -31,7 +33,7 @@ const centerLabel = (total) => ({
     // font color
     ctx.fillStyle = '#382c9c';
 
-    const text = total;
+    const text = String(total);
     const textX = Math.round((width - ctx.measureText(text).width) / 2);
     const textY = height / 2;
 
@@ -40,13 +42,28 @@ const centerLabel = (total) => ({
   },
 });
 
-export const DoughnutChart = ({
+export type doughnutStyle = {
+  height?: number;
+  width?: number;
+  marginRight?: number;
+};
+
+interface IDoughnutChart {
+  countData: number[];
+  legendData: string[];
+  total: number;
+  colors: string[];
+  style?: doughnutStyle;
+}
+
+const DoughnutChart: React.FC<IDoughnutChart> = ({
   countData,
   legendData,
   total,
   colors,
-  style: { height = 400, width = 400, marginRight = 0 },
+  style,
 }) => {
+  const { height = 400, width = 400, marginRight = 0 } = { ...style };
   const doughnutCustomLabels = getDoughnutCustomLabels({
     autoFontColor: true,
     autoFitWhenPossible: { fontSize: 20, minPercentToShow: 3 },
@@ -67,7 +84,9 @@ export const DoughnutChart = ({
   const options = {
     maintainAspectRatio: false,
     responsive: true,
-    ...getDoughnutCustomLegendOptions({ fontSize: 14 }),
+    ...getDoughnutCustomLegendOptions({
+      fontSize: '14',
+    }),
   };
 
   return (
@@ -78,10 +97,12 @@ export const DoughnutChart = ({
       >
         <Doughnut
           data={data}
-          type="doughnut"
           options={options}
           // регестрируем плагины локально, применительно к данному графику
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           plugins={[centerLabel(total), ChartDataLabels, DoughnutLegend]}
+          type="doughnut"
         />
       </div>
       {/* Место для отрисовки кастомной легенды */}

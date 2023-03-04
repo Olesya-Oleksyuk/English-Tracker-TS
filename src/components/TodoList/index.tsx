@@ -1,27 +1,26 @@
 import React, { useEffect, useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
+import { Task } from '../../store/taskSlice';
 import TaskItem from '../TaskItem';
 import './TodoList.css';
 import Loading from '../Loading';
-import { STATUS } from '../../store/taskSlice';
-import { taskCategory } from '../Dropdown/constants';
 import { setNumberOfNotesLeftCount } from '../../store/controlPanelSlice';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
-export const TodoList = () => {
-  const { tasks, status: tasksStatus } = useSelector(
+const TodoList = () => {
+  const { tasks, status: tasksStatus } = useAppSelector(
     (state) => state.mainReducer.tasks
   );
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const { status: filterStatus, category: filterCategory } = useSelector(
+  const { status: filterStatus, category: filterCategory } = useAppSelector(
     (state) => state.mainReducer.controlPanel
   );
 
   const filteredByCategoryList = useMemo(() => {
     if (!tasks || !tasks.length) return [];
 
-    if (filterCategory === taskCategory.ALL) {
+    if (filterCategory === 'ALL') {
       return tasks;
     }
 
@@ -41,7 +40,7 @@ export const TodoList = () => {
     }
   }, [filteredByCategoryList, filterStatus]);
 
-  const countUncompleted = (list) =>
+  const countUncompleted = (list: Task[]) =>
     list.filter((task) => !task.completed).length;
 
   useEffect(() => {
@@ -54,11 +53,11 @@ export const TodoList = () => {
 
   return (
     <div className="todo-container">
-      {tasksStatus === STATUS.PENDING && (
-        <Loading width="920px" height="80px" />
+      {tasksStatus === 'PENDING' && (
+        <Loading style={{ width: '920px', height: '80px' }} />
       )}
       <ul className="todo-list">
-        {tasksStatus === STATUS.FULFILLED &&
+        {tasksStatus === 'FULFILLED' &&
           !!filteredByStatusList.length &&
           filteredByStatusList.map((todo) => (
             <TaskItem key={todo.id} todo={todo} />
@@ -67,3 +66,5 @@ export const TodoList = () => {
     </div>
   );
 };
+
+export default TodoList;

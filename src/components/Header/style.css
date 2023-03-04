@@ -7,7 +7,6 @@ nav {
   margin-top: 10px;
 }
 
-/* Add styling for the navbar elements */
 .nav-tab {
   font-family: "Nunito", sans-serif;
   color: #333;
@@ -18,7 +17,6 @@ nav {
   text-align: center;
 }
 
-/* Add border on hover */
 @supports (-webkit-text-stroke: 1px black) {
   .nav-tab:hover,
   .active {
@@ -37,5 +35,5 @@ nav {
   margin-left: auto;
   margin-right: auto;
   border-radius: 100vw;
-  box-shadow: 0px 6px 13px 1px rgb(34 60 80 / 20%);
+  box-shadow: 0 6px 13px 1px rgb(34 60 80 / 20%);
 }

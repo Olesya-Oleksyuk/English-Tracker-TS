@@ -1,16 +1,32 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { taskCategory } from './constants';
+import {
+  categories,
+  changeCategoryFilter,
+} from '../../store/controlPanelSlice';
+import { useAppDispatch } from '../../store/hooks';
 import './style.css';
-import { changeCategoryFilter } from '../../store/controlPanelSlice';
 
-function Dropdown({ id, selected, setSelected, handleNonSelected }) {
+interface IDropdown {
+  id: string;
+  selected: string;
+  setSelected: Dispatch<SetStateAction<string>>;
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
+  handleNonSelected?: any;
+}
+
+const Dropdown: React.FC<IDropdown> = ({
+  id,
+  selected,
+  setSelected,
+  handleNonSelected,
+}) => {
   const [isActive, setIsActive] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const openDropdownHandler = () => setIsActive(!isActive);
 
-  const selectDropdownItemHandler = (option) => {
+  const selectDropdownItemHandler = (option: categories) => {
     setSelected(option);
     dispatch(changeCategoryFilter({ checkedCategory: option }));
 
@@ -55,6 +71,6 @@ function Dropdown({ id, selected, setSelected, handleNonSelected }) {
       )}
     </div>
   );
-}
+};
 
 export default Dropdown;

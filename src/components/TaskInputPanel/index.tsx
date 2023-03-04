@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 
-import Dropdown from '../Dropdown';
 import NumberInput from '../NumberInput';
+import Dropdown from '../Dropdown';
 
 import useCheckSelectedStatus from '../../hooks/useCheckSelectedStatus';
+import { useAppDispatch } from '../../store/hooks';
+
 import { dropdownPlaceholder, taskCategory } from '../Dropdown/constants';
 import { addTask } from '../../store/taskSlice';
+
 import './TaskInputPanel.css';
 
 const TaskInputPanel = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const formIds = {
     selectCategoryId: 'selected-category',
@@ -18,9 +20,10 @@ const TaskInputPanel = () => {
   };
 
   const [inputText, setInputText] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState(
-    'Choose task category'
-  );
+
+  const [selectedCategory, setSelectedCategory] =
+    useState<string>(dropdownPlaceholder);
+
   const [taskAmount, setTaskAmount] = useState('0');
   const handleNonSelected = useCheckSelectedStatus();
 
@@ -29,14 +32,13 @@ const TaskInputPanel = () => {
       addTask({
         description: inputText,
         category: selectedCategory,
-        date: Date.now(),
-        taskAmount,
+        taskAmount: parseInt(taskAmount, 10),
       })
     );
     setInputText('');
   };
 
-  const inputTextHandler = (e) => {
+  const inputTextHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
   };
 
@@ -59,17 +61,14 @@ const TaskInputPanel = () => {
     return true;
   };
 
-  const onKeyPress = (e) => {
-    if (e.key !== 'Enter') {
+  const onKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key !== 'Enter') {
       return;
     }
     const categoryFieldReady = isCategoryReady();
     const taskAmountFieldReady = isTaskAmountReady();
 
-    inputText &&
-      categoryFieldReady &&
-      taskAmountFieldReady &&
-      handlerAddTask(selectedCategory, taskAmount);
+    inputText && categoryFieldReady && taskAmountFieldReady && handlerAddTask();
   };
 
   return (

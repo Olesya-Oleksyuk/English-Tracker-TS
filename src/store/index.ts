@@ -10,11 +10,11 @@ import {
   REHYDRATE,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import tasksReducer, { STATUS } from './taskSlice';
+import tasksReducer, { TasksState } from './taskSlice';
 import controlPanelReducer from './controlPanelSlice';
 
-const reHydrateStore = () => ({
-  mainReducer: { tasks: { tasks: [], status: STATUS.INITIALIZATION } },
+const reHydrateStore = (): { mainReducer: { tasks: TasksState } } => ({
+  mainReducer: { tasks: { tasks: [], status: 'INITIALIZATION' } },
 });
 
 const persistConfig = {
@@ -47,3 +47,10 @@ const toolkitStore = configureStore({
 export const persistor = persistStore(toolkitStore);
 
 export default toolkitStore;
+
+// в видео
+// export type RootState = ReturnType<typeof toolkitStore.getState>;
+// определяем тип глобального state
+export type RootState = ReturnType<typeof toolkitStore.getState>;
+// export type AppDispatch = typeof toolkitStore.dispatch;
+export type AppDispatch = typeof toolkitStore.dispatch;

@@ -38,9 +38,20 @@ h1 {
   position: relative;
 }
 
+.demo {
+  width: 180px;
+}
+
 .demo-data-btn {
   position: absolute;
   right: 20px;
   top: 20px;
+  cursor: pointer;
+}
+
+.clear-cash-btn {
+  position: absolute;
+  right: 20px;
+  top: 70px;
   cursor: pointer;
 }

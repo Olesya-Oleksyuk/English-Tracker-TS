@@ -1,15 +1,18 @@
 import React from 'react';
 import './Label.css';
 
-export const LabelVariant = {
-  PRIMARY: 'primary',
-  SECONDARY: 'secondary',
-  DANGER: 'danger',
-  DEMO: 'demo',
-};
+type LabelVariant = 'primary' | 'secondary' | 'danger' | 'demo';
 
-const Label = ({
-  variant = LabelVariant.PRIMARY,
+interface ILabel {
+  variant?: LabelVariant;
+  disabled?: boolean;
+  fullWidth?: boolean;
+  className?: string;
+  children: React.ReactNode;
+}
+
+const Label: React.FC<ILabel> = ({
+  variant = 'primary',
   disabled = false,
   fullWidth = false,
   className = '',

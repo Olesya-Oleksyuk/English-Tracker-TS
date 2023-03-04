@@ -1,16 +1,21 @@
 import React from 'react';
 import { format } from 'date-fns';
 import './TaskItem.css';
-import { useDispatch } from 'react-redux';
 import Label from '../Label';
-import { changeStatus, deleteTasks } from '../../store/taskSlice';
+import { changeStatus, deleteTasks, Task } from '../../store/taskSlice';
+import { useAppDispatch } from '../../store/hooks';
 
-const TaskItem = ({ todo }) => {
-  const dispatch = useDispatch();
-  const handlerDelete = (taskId) => {
+interface ITaskItem {
+  todo: Task;
+}
+
+const TaskItem: React.FC<ITaskItem> = ({ todo }) => {
+  const dispatch = useAppDispatch();
+
+  const handlerDelete = (taskId: number) => {
     dispatch(deleteTasks({ ids: [taskId] }));
   };
-  const handlerComplete = (taskId) => {
+  const handlerComplete = (taskId: number) => {
     dispatch(changeStatus({ ids: [taskId] }));
   };
   return (

@@ -1,7 +1,22 @@
 import React, { useEffect } from 'react';
 import './NumberInput.css';
 
-const NumberInput = ({ id, name, value, setValue, handleNonSelected }) => {
+interface NumberInputProps {
+  id: string;
+  name: string;
+  value: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
+  handleNonSelected: any;
+}
+
+const NumberInput = ({
+  id,
+  name,
+  value,
+  setValue,
+  handleNonSelected,
+}: NumberInputProps) => {
   useEffect(() => {
     if (!handleNonSelected) return;
     const { isNonSelected, removeNonSelectedStatus } = handleNonSelected;

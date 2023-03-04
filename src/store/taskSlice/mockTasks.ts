@@ -1,8 +1,9 @@
 /* eslint-disable arrow-body-style */
 import { loremIpsum } from 'lorem-ipsum';
 import { taskCategory } from '../../components/Dropdown/constants';
+import { Task } from './index';
 
-const getRandomValue = (obj) => {
+const getRandomValue = (obj: object) => {
   const values = Object.values(obj);
   return values[Math.floor(Math.random() * values.length)];
 };
@@ -17,9 +18,10 @@ const generateRandomNumber = (minLimit = 0, maxLimit = 10) => {
   return Math.floor(Math.random() * (maxLimit - minLimit) + minLimit);
 };
 
-export const getMockTasks = () => {
+export const getMockTasks = (): Task[] => {
   return [...Array(20)].map(() => {
     const date = getRandomDate();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { ALL, ...randomTaskCategory } = taskCategory;
 
     return {
