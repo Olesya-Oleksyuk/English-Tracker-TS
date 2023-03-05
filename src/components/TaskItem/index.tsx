@@ -4,6 +4,7 @@ import './TaskItem.css';
 import Label from '../Label';
 import { changeStatus, deleteTasks, Task } from '../../store/taskSlice';
 import { useAppDispatch } from '../../store/hooks';
+import { RuCategory } from '../Dropdown/constants';
 
 interface ITaskItem {
   todo: Task;
@@ -42,7 +43,7 @@ const TaskItem: React.FC<ITaskItem> = ({ todo }) => {
           todo.completed ? 'completed' : ''
         }`}
       >
-        {todo.category}
+        {RuCategory(todo.category.split(' ').join('_'))}
       </li>
       <li className="todo-item todo-item-amount">
         <Label disabled={todo.completed} fullWidth>
