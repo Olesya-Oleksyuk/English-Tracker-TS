@@ -24,10 +24,8 @@ const centerLabel = (total: number) => ({
 
     // возврат последнего сохраненного состояния
     ctx.restore();
-    // const fontSize = (height / 170).toFixed(2);
     const fontSize = (height * 0.15).toFixed(2);
     ctx.font = `bold ${fontSize}px  sans-serif`;
-    // ctx.font = `bold ${fontSize}em  sans-serif`;
     ctx.textBaseline = 'middle';
 
     // font color

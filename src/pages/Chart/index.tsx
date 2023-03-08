@@ -6,6 +6,8 @@ import DoughnutChart from '../../components/DoughnutChart';
 import { getUniqueValues } from '../../helpers';
 import { sectorsColors } from '../../components/DoughnutChart/constants';
 import { useAppSelector } from '../../store/hooks';
+import { getText } from '../../multiLanguage/LanguageProvider';
+import { DictionaryDataIds } from '../../multiLanguage/languages';
 import './index.css';
 
 const Chart = () => {
@@ -36,7 +38,10 @@ const Chart = () => {
 
     return {
       countData: notes.map((i) => i.count),
-      legendData: notes?.map((i) => i.categoryName),
+      // legendData: notes?.map((i) => getText(i.categoryName)),
+      legendData: notes?.map((i) =>
+        getText(`CATEGORIES.${i.categoryName}` as DictionaryDataIds)
+      ),
       total: notes.reduce((prev, curr) => prev + curr.count, 0),
       colors: sectorsColors,
     };
@@ -45,7 +50,7 @@ const Chart = () => {
   return (
     <DefaultLayout>
       {tasksData === undefined ? (
-        <h1 className="empty-list">Your list is empty!</h1>
+        <h1 className="empty-list">{getText('CHART.EMPTY_LIST_ALERT')}</h1>
       ) : (
         <div className="chart-container">
           <DoughnutChart

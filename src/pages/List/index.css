@@ -10,14 +10,13 @@ h1 {
 
 .main-container {
   min-height: 320px;
-  /*flex-basis: 60vw;*/
   display: flex;
   flex-direction: column;
   flex: 0 1 1000px;
   min-width: 600px;
-  padding: 10px 20px;
-  /*width: 30%;*/
   justify-content: center;
+
+  padding: 10px 20px;
   margin: 0 auto;
   align-items: center;
   box-sizing: border-box;
@@ -42,16 +41,41 @@ h1 {
   width: 180px;
 }
 
-.demo-data-btn {
+.demo-data-btn,
+.clear-cash-btn {
   position: absolute;
-  right: 20px;
-  top: 20px;
+  padding: 0;
   cursor: pointer;
 }
 
+.demo-data-btn {
+  right: 20px;
+  top: 20px;
+}
+
 .clear-cash-btn {
-  position: absolute;
   right: 20px;
   top: 70px;
-  cursor: pointer;
+}
+
+.demo-data-btn button,
+.clear-cash-btn button {
+  height: 40px;
+  width: 100%;
+  padding: 0;
+}
+
+.language-selector-container {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}
+
+.language-selector-container select {
+  font-size: 17px;
+  font-family: "Nunito", sans-serif;
+  color: #595959;
+  border: white;
+  outline: white;
+  background: white;
 }

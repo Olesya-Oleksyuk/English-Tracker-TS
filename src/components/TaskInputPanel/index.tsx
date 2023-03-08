@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import NumberInput from '../NumberInput';
 import Dropdown from '../Dropdown';
@@ -7,12 +7,30 @@ import useCheckSelectedStatus from '../../hooks/useCheckSelectedStatus';
 import { useAppDispatch } from '../../store/hooks';
 
 import { dropdownPlaceholder, taskCategory } from '../Dropdown/constants';
-import { addTask } from '../../store/taskSlice';
+import { addTask, TaskCategory } from '../../store/taskSlice';
 
 import './TaskInputPanel.css';
+import {
+  DictionaryData,
+  DictionaryDataIds,
+} from '../../multiLanguage/languages';
+import {
+  getText,
+  LanguageContext,
+  Text,
+} from '../../multiLanguage/LanguageProvider';
 
 const TaskInputPanel = () => {
   const dispatch = useAppDispatch();
+
+  const { dictionary } = useContext(LanguageContext);
+  const categories = (dictionary as DictionaryData).CATEGORIES;
+
+  // get text according to id & current language
+  const getTextDropdown = (textId: DictionaryDataIds) =>
+    Text({
+      textId: `CATEGORIES.${textId}` as DictionaryDataIds,
+    });
 
   const formIds = {
     selectCategoryId: 'selected-category',
@@ -24,6 +42,11 @@ const TaskInputPanel = () => {
   const [selectedCategory, setSelectedCategory] =
     useState<string>(dropdownPlaceholder);
 
+  const selectedCategoryText =
+    selectedCategory !== dropdownPlaceholder
+      ? getText(`CATEGORIES.${selectedCategory}` as DictionaryDataIds)
+      : getText('CONTROL_PANEL.DROPDOWN_PLACEHOLDER');
+
   const [taskAmount, setTaskAmount] = useState('0');
   const handleNonSelected = useCheckSelectedStatus();
 
@@ -31,7 +54,7 @@ const TaskInputPanel = () => {
     dispatch(
       addTask({
         description: inputText,
-        category: selectedCategory,
+        category: selectedCategory as TaskCategory,
         taskAmount: parseInt(taskAmount, 10),
       })
     );
@@ -76,9 +99,13 @@ const TaskInputPanel = () => {
       <section className="input-options-wrapper">
         <Dropdown
           id={formIds.selectCategoryId}
+          // options={categoryList}
+          options={categories as Record<string, string>}
+          // options={categoryList}
           handleNonSelected={handleNonSelected}
-          selected={selectedCategory}
+          selected={selectedCategoryText}
           setSelected={setSelectedCategory}
+          getText={getTextDropdown as (arg1: string) => JSX.Element}
         />
         <NumberInput
           id={formIds.selectTaskAmountId}
@@ -94,7 +121,7 @@ const TaskInputPanel = () => {
         onKeyPress={onKeyPress}
         type="text"
         className="todo-input"
-        placeholder="Enter your task description here and choose amount of tasks you've done above"
+        placeholder={getText('CONTROL_PANEL.INPUT_PLACEHOLDER')}
       />
     </div>
   );

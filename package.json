@@ -16,6 +16,8 @@
     "chart.js": "^3.2.1",
     "chartjs-plugin-datalabels": "^2.0.0-rc",
     "date-fns": "^2.29.3",
+    "lodash": "^4.17.21",
+    "lodash.get": "^4.4.2",
     "lorem-ipsum": "^2.0.8",
     "node-sass": "^6.0.0",
     "react": "^17.0.2",
@@ -56,6 +58,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash.get": "^4.4.7",
     "@types/react-dom": "^18.0.10",
     "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/eslint-plugin": "^5.51.0",

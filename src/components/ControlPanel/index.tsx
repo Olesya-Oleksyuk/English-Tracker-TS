@@ -1,12 +1,10 @@
 import React from 'react';
 import './ControlPanel.css';
 import { useDispatch } from 'react-redux';
-import {
-  changeStatusFilter,
-  filterStatus,
-} from '../../store/controlPanelSlice';
+import { changeStatusFilter } from '../../store/controlPanelSlice';
 import { changeStatus, deleteTasks, Task } from '../../store/taskSlice';
 import { useAppSelector } from '../../store/hooks';
+import { getText } from '../../multiLanguage/LanguageProvider';
 
 interface IControlPanel {
   leftNotes: Task[];
@@ -43,7 +41,8 @@ const ControlPanel: React.FC<IControlPanel> = ({ leftNotes, anyCompleted }) => {
     dispatch(deleteTasks({ ids: anyCompleted.map((todo) => todo.id) }));
   };
 
-  const handlerSetFilterStatus = (checkedFilter: filterStatus) => {
+  const handlerSetFilterStatus = (event: React.FormEvent<HTMLFormElement>) => {
+    const { value: checkedFilter } = event.target as HTMLFormElement;
     dispatch(changeStatusFilter({ checkedFilter }));
   };
 
@@ -57,12 +56,12 @@ const ControlPanel: React.FC<IControlPanel> = ({ leftNotes, anyCompleted }) => {
         role="button"
         tabIndex={0}
       >
-        {notesLeftCount} notes left
+        {notesLeftCount} {getText('CONTROL_PANEL.NOTES_LEFT')}
       </span>
       <form
         className="control-radios"
         name="radios"
-        onChange={(e) => handlerSetFilterStatus(e.currentTarget.value)}
+        onChange={(e) => handlerSetFilterStatus(e)}
       >
         <input
           type="radio"
@@ -72,7 +71,9 @@ const ControlPanel: React.FC<IControlPanel> = ({ leftNotes, anyCompleted }) => {
           name="radios"
           defaultChecked
         />
-        <label htmlFor="all-todos">All</label>
+        <label htmlFor="all-todos">
+          {getText('CONTROL_PANEL.FILTER_STATUS.ALL')}
+        </label>
         <input
           type="radio"
           value="uncompleted"
@@ -80,7 +81,10 @@ const ControlPanel: React.FC<IControlPanel> = ({ leftNotes, anyCompleted }) => {
           name="radios"
           id="uncompleted-todos"
         />
-        <label htmlFor="uncompleted-todos">To do</label>
+        <label htmlFor="uncompleted-todos">
+          {' '}
+          {getText('CONTROL_PANEL.FILTER_STATUS.UNCOMPLETED')}
+        </label>
         <input
           type="radio"
           value="completed"
@@ -88,7 +92,10 @@ const ControlPanel: React.FC<IControlPanel> = ({ leftNotes, anyCompleted }) => {
           name="radios"
           id="completed-todos"
         />
-        <label htmlFor="completed-todos">Completed</label>
+        <label htmlFor="completed-todos">
+          {' '}
+          {getText('CONTROL_PANEL.FILTER_STATUS.COMPLETED')}
+        </label>
       </form>
       {!!anyCompleted.length && (
         <span
@@ -99,7 +106,7 @@ const ControlPanel: React.FC<IControlPanel> = ({ leftNotes, anyCompleted }) => {
           role="button"
           tabIndex={0}
         >
-          Clear completed
+          {getText('BUTTONS.CLEAR_COMPLETED')}
         </span>
       )}
     </div>

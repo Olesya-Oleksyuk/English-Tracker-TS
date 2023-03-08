@@ -1,0 +1,37 @@
+{
+  "TITLE": "Your English Tracker",
+  "NAVIGATION_TABS": {
+    "TASK_LIST": "Task List",
+    "CHART": "Chart"
+  },
+  "CATEGORIES": {
+    "ALL": "ALL",
+    "GRAMMAR": "GRAMMAR",
+    "PRONUNCIATION": "PRONUNCIATION",
+    "DRILLING": "DRILLING",
+    "VOCABULARY": "VOCABULARY",
+    "PHRASAL_VERBS": "PHRASAL VERBS",
+    "SLANG": "SLANG",
+    "ACADEMIC_WRITING": "ACADEMIC WRITING"
+  },
+  "CONTROL_PANEL": {
+    "INPUT_PLACEHOLDER": "Write down your task description here and choose amount of tasks you've done + ENTER",
+    "DROPDOWN_PLACEHOLDER": "Choose task category",
+    "FILTER_STATUS": {
+      "ALL": "All",
+      "UNCOMPLETED": "To do",
+      "COMPLETED": "Completed"
+    },
+    "NOTES_LEFT": "notes left"
+  },
+  "BUTTONS": {
+    "DEMO": "Demo data",
+    "CLEAR_CASH": "Clear cache",
+    "CLEAR_COMPLETED": "Clear Completed"
+  },
+  "CHART": {
+    "EMPTY_LIST_ALERT": "Your list is empty!"
+  }
+}
+
+

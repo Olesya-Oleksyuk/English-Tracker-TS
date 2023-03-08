@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
+import { IHandleNonSelected } from '../../hooks/useCheckSelectedStatus/types';
 import './NumberInput.css';
 
-interface NumberInputProps {
+export interface NumberInputProps {
   id: string;
   name: string;
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
-  /* eslint-disable  @typescript-eslint/no-explicit-any */
-  handleNonSelected: any;
+  handleNonSelected: IHandleNonSelected;
 }
 
 const NumberInput = ({
