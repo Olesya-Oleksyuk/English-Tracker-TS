@@ -24,18 +24,19 @@ const pickColor = (bgColor: string) => {
 
 // Расчет суммарного значения нескрытых элементов датасета в данный момент времени
 const totalVisible = (ctx: Context): number => {
-  // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
-  const notHiddenItemIndices = ctx.chart.legend!.legendItems!.flatMap((i) =>
-    !i.hidden ? i.index : []
-  );
+  const notHiddenItemIndices =
+    ctx.chart.legend &&
+    ctx.chart.legend.legendItems &&
+    ctx.chart.legend.legendItems.flatMap((i) => (!i.hidden ? i.index : []));
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  return ctx.dataset.data.reduce(
-    (acc, curr, i) =>
-      notHiddenItemIndices.includes(i) ? Number(acc) + Number(curr) : acc,
-    0
-  );
+  const totalValue = notHiddenItemIndices
+    ? ctx.dataset.data.reduce(
+        (acc, curr, i) =>
+          notHiddenItemIndices.includes(i) ? Number(acc) + Number(curr) : acc,
+        0
+      )
+    : 0;
+  return totalValue as number;
 };
 
 export type CustomLabelsFontOptions = {
@@ -61,10 +62,11 @@ const getDoughnutCustomLabels = ({
     color: (ctx: Context) => {
       // label index
       const { dataIndex } = ctx;
-      // sector background color on which the label is positioned
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      const labelBackground = ctx.dataset.backgroundColor[dataIndex];
+      const labelBackground =
+        ctx.dataset.backgroundColor &&
+        Array.isArray(ctx.dataset.backgroundColor) &&
+        ctx.dataset.backgroundColor[dataIndex];
+
       return pickColor(labelBackground);
     },
   };

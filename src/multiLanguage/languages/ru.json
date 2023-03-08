@@ -1,0 +1,37 @@
+{
+  "TITLE": "Ваш трекер Английского",
+  "NAVIGATION_TABS": {
+    "TASK_LIST": "Заметки",
+    "CHART": "График"
+  },
+  "CATEGORIES": {
+    "ALL": "ВСЕ",
+    "GRAMMAR": "ГРАММАТИКА",
+    "PRONUNCIATION": "ПРОИЗНОШЕНИЕ",
+    "DRILLING": "ДРИЛЛИНГ",
+    "VOCABULARY": "ВОКАБУЛЯР",
+    "PHRASAL_VERBS": "ФРАЗОВЫЕ ГЛАГОЛЫ",
+    "SLANG": "СЛЭНГ",
+    "ACADEMIC_WRITING": "АКАДЕМИЧЕСКОЕ ПИСЬМО"
+  },
+  "CONTROL_PANEL": {
+    "INPUT_PLACEHOLDER": "Запишите резюме проделенной работы и выберите количество сделанных заданий + ENTER",
+    "DROPDOWN_PLACEHOLDER": "Выберите категорию задания",
+    "FILTER_STATUS": {
+      "ALL": "Все",
+      "UNCOMPLETED": "В процессе",
+      "COMPLETED": "Завершенные"
+    },
+    "NOTES_LEFT": "отложенно"
+  },
+  "BUTTONS": {
+    "DEMO": "Демо данные",
+    "CLEAR_CASH": "Очистить кэш",
+    "CLEAR_COMPLETED": "Удалить завершенные"
+  },
+  "CHART": {
+    "EMPTY_LIST_ALERT": "Ваш список задач пуст!"
+  }
+}
+
+

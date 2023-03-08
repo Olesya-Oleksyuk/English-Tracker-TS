@@ -1,11 +1,12 @@
 import React, { useEffect, useMemo } from 'react';
 
-import { Task } from '../../store/taskSlice';
 import TaskItem from '../TaskItem';
-import './TodoList.css';
 import Loading from '../Loading';
-import { setNumberOfNotesLeftCount } from '../../store/controlPanelSlice';
+
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { Task } from '../../store/taskSlice';
+import { setNumberOfNotesLeftCount } from '../../store/controlPanelSlice';
+import './TodoList.css';
 
 const TodoList = () => {
   const { tasks, status: tasksStatus } = useAppSelector(

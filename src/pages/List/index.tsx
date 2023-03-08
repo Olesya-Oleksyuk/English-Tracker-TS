@@ -5,6 +5,7 @@ import ControlPanel from '../../components/ControlPanel';
 import TaskInputPanel from '../../components/TaskInputPanel';
 import TodoList from '../../components/TodoList';
 import Label from '../../components/Label';
+import Index from '../../components/LanguageSelector';
 
 import {
   clearLocalStorage,
@@ -12,6 +13,7 @@ import {
   generateMockTask,
 } from '../../store/taskSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { Text } from '../../multiLanguage/LanguageProvider';
 import './index.css';
 
 const List = () => {
@@ -21,26 +23,34 @@ const List = () => {
   );
 
   useEffect(() => {
-    if (fetchingStatus === 'INITIALIZATION') dispatch(fetchTasks());
+    if (fetchingStatus === 'INITIALIZATION' || fetchingStatus === 'PENDING')
+      dispatch(fetchTasks());
   }, [list]);
 
   const generateMockData = () => dispatch(generateMockTask());
-  const clearCashData = () => dispatch(clearLocalStorage());
+  const clearCashData = () => {
+    dispatch(clearLocalStorage());
+  };
 
   return (
     <DefaultLayout>
       <div className="main-container">
         <header>
-          <h1> Your English Tracker </h1>
+          <h1>
+            <Text textId="TITLE" />
+          </h1>
         </header>
+        <div className="language-selector-container">
+          <Index />
+        </div>
         <Label className="demo-data-btn" variant="demo">
           <button type="button" onClick={generateMockData}>
-            Демо данные
+            <Text textId="BUTTONS.DEMO" />
           </button>
         </Label>
         <Label className="clear-cash-btn" variant="demo">
           <button type="button" onClick={clearCashData}>
-            Очистить кэш
+            <Text textId="BUTTONS.CLEAR_CASH" />
           </button>
         </Label>
         <div className="todo-list-container">

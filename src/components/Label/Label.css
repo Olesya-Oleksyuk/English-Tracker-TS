@@ -2,8 +2,8 @@
   display: inline-block;
   box-sizing: border-box;
   text-align: center;
-  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
   padding: 8px 21px;
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
   border-radius: 10px;
   color: white;
 }

@@ -2,11 +2,13 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getMockTasks } from './mockTasks';
 import { taskCategory } from '../../components/Dropdown/constants';
 
+export type TaskCategory = keyof typeof taskCategory;
+
 export type Task = {
   id: number;
   description: string;
   completed: boolean;
-  category: string;
+  category: TaskCategory;
   date: number;
   taskAmount: number;
 };
@@ -21,7 +23,7 @@ const fakeDataFetching = (): Promise<Task[]> =>
     setTimeout(() => {
       const data = getMockTasks();
       resolve(data);
-    }, 5000);
+    }, 3000);
   });
 
 // async thunk
@@ -29,15 +31,6 @@ export const fetchTasks = createAsyncThunk<Task[], void>(
   'tasks/fetchTasks',
   async () => fakeDataFetching()
 );
-
-export const STATUS = {
-  INITIALIZATION: 'initialization',
-  PENDING: 'pending',
-  FULFILLED: 'fulfilled',
-  REJECTED: 'rejected',
-} as const;
-
-export type status = (typeof taskCategory)[keyof typeof taskCategory];
 
 const initialState: TasksState = {
   tasks: [],

@@ -1,10 +1,12 @@
 import React from 'react';
 import { format } from 'date-fns';
-import './TaskItem.css';
 import Label from '../Label';
+
 import { changeStatus, deleteTasks, Task } from '../../store/taskSlice';
 import { useAppDispatch } from '../../store/hooks';
-import { RuCategory } from '../Dropdown/constants';
+import { Text } from '../../multiLanguage/LanguageProvider';
+import { DictionaryDataIds } from '../../multiLanguage/languages';
+import './TaskItem.css';
 
 interface ITaskItem {
   todo: Task;
@@ -19,6 +21,12 @@ const TaskItem: React.FC<ITaskItem> = ({ todo }) => {
   const handlerComplete = (taskId: number) => {
     dispatch(changeStatus({ ids: [taskId] }));
   };
+
+  const getCategory = (str: string) => {
+    const categoryStr = `CATEGORIES.${str.split(' ').join('_')}`;
+    return <Text textId={categoryStr as DictionaryDataIds} />;
+  };
+
   return (
     <div className="todo">
       <button
@@ -43,7 +51,7 @@ const TaskItem: React.FC<ITaskItem> = ({ todo }) => {
           todo.completed ? 'completed' : ''
         }`}
       >
-        {RuCategory(todo.category.split(' ').join('_'))}
+        {getCategory(todo.category)}
       </li>
       <li className="todo-item todo-item-amount">
         <Label disabled={todo.completed} fullWidth>

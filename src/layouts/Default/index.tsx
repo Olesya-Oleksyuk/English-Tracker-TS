@@ -2,11 +2,7 @@ import React from 'react';
 import Header from '../../components/Header';
 import './index.css';
 
-interface IDefaultLayout {
-  children: React.ReactNode;
-}
-
-const DefaultLayout: React.FC<IDefaultLayout> = ({ children }) => (
+const DefaultLayout = ({ children }: { children: React.ReactNode }) => (
   <div className="page">
     <header className="page-header">
       <Header />

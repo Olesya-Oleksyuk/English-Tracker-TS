@@ -1,25 +1,28 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { taskCategory } from './constants';
 import {
   categories,
   changeCategoryFilter,
 } from '../../store/controlPanelSlice';
 import { useAppDispatch } from '../../store/hooks';
+import { IHandleNonSelected } from '../../hooks/useCheckSelectedStatus/types';
 import './style.css';
 
 interface IDropdown {
   id: string;
   selected: string;
+  options: Record<string, string>;
   setSelected: Dispatch<SetStateAction<string>>;
-  /* eslint-disable  @typescript-eslint/no-explicit-any */
-  handleNonSelected?: any;
+  handleNonSelected?: IHandleNonSelected;
+  getText?: (arg1: string) => JSX.Element;
 }
 
 const Dropdown: React.FC<IDropdown> = ({
   id,
+  options,
   selected,
   setSelected,
   handleNonSelected,
+  getText,
 }) => {
   const [isActive, setIsActive] = useState(false);
   const dispatch = useAppDispatch();
@@ -52,19 +55,20 @@ const Dropdown: React.FC<IDropdown> = ({
       </div>
       {isActive && (
         <div className="dropdown-content">
-          {Object.values(taskCategory).map((option) => (
+          {Object.keys(options).map((option, index) => (
             <div
               onClick={() => {
-                selectDropdownItemHandler(option);
+                selectDropdownItemHandler(option as categories);
               }}
               onKeyPress={() => {
-                selectDropdownItemHandler(option);
+                selectDropdownItemHandler(option as categories);
               }}
               className="dropdown-item"
               tabIndex={0}
               role="menuitem"
+              key={index}
             >
-              {option}
+              {getText ? getText(option) : ''}
             </div>
           ))}
         </div>

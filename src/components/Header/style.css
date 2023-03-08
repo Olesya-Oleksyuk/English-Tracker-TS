@@ -2,19 +2,19 @@ nav {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  background-color: #ffffff;
   padding: 0 20px;
   margin-top: 10px;
+  background-color: #ffffff;
 }
 
 .nav-tab {
-  font-family: "Nunito", sans-serif;
-  color: #333;
-  text-decoration: none;
-  font-size: 30px;
   width: 200px;
   padding: 10px;
   text-align: center;
+  font-size: 30px;
+  font-family: "Nunito", sans-serif;
+  color: #333;
+  text-decoration: none;
 }
 
 @supports (-webkit-text-stroke: 1px black) {
@@ -31,9 +31,9 @@ nav {
 .divider {
   height: 5px;
   width: 100%;
-  background-color: #45ca4f94;
   margin-left: auto;
   margin-right: auto;
+  background-color: #45ca4f94;
   border-radius: 100vw;
   box-shadow: 0 6px 13px 1px rgb(34 60 80 / 20%);
 }

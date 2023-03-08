@@ -72,7 +72,9 @@
             }
         ],
         "no-use-before-define": "off",
-        "@typescript-eslint/no-use-before-define": ["error"]
+        "@typescript-eslint/no-use-before-define": ["error"],
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": ["error"]
     },
     "overrides": [
         {
@@ -80,6 +82,12 @@
             "files": ["src/**/*Slice/*"],
             // avoid state param assignment
             "rules": { "no-param-reassign": ["error", { "props": false }] }
+        },
+        {
+            "files": ["*.ts", "*.tsx"],
+            "rules": {
+                "no-undef": "off"
+            }
         }
     ]
 }

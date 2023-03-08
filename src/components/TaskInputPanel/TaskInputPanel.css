@@ -1,24 +1,24 @@
 .input-options-wrapper {
   display: flex;
-  padding: 20px 0;
   gap: 10px;
+  padding: 20px 0;
 }
 
-.todo-input{
+.todo-input {
   box-sizing: border-box;
+  width: 100%;
   align-self: stretch;
   border: none;
   outline: none;
   padding: 10px 10px;
   color: #636263;
   font-size: 20px;
-  width: 100%;
 }
 
-.todo-form{
+.todo-form {
   align-self: stretch;
-  border: none;
-  border-bottom: 2px solid #E1E0E1;
-  outline: none;
   margin: 10px 20px 0;
+  border: none;
+  border-bottom: 2px solid #e1e0e1;
+  outline: none;
 }
