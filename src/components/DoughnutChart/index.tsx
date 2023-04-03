@@ -1,44 +1,15 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { Chart } from 'chart.js';
 
 import {
   DoughnutLegend,
   getDoughnutCustomLegendOptions,
 } from './Plugins/DoughnutLegend';
 import getDoughnutCustomLabels from './Plugins/DoughnutCustomLabels';
+import CenterLabel from './Plugins/СenterLabel';
 
 import './DoughnutChart.css';
-
-// Отрисовка центрального лейбла, который равен суммарному значению датасета;
-const centerLabel = (total: number) => ({
-  // id для регистрации плагина в пропсе графика - plugins
-  id: 'centerLabelPlugin',
-  // Вызывается перед отрисовкой графика каждого кадра анимации (стадия Rendering);
-  beforeDraw: (chart: Chart) => {
-    const {
-      ctx,
-      chartArea: { width, height },
-    } = chart;
-
-    // возврат последнего сохраненного состояния
-    ctx.restore();
-    const fontSize = (height * 0.15).toFixed(2);
-    ctx.font = `bold ${fontSize}px  sans-serif`;
-    ctx.textBaseline = 'middle';
-
-    // font color
-    ctx.fillStyle = '#382c9c';
-
-    const text = String(total);
-    const textX = Math.round((width - ctx.measureText(text).width) / 2);
-    const textY = height / 2;
-
-    ctx.fillText(text, textX, textY);
-    ctx.save();
-  },
-});
 
 export type doughnutStyle = {
   height?: number;
@@ -96,10 +67,10 @@ const DoughnutChart: React.FC<IDoughnutChart> = ({
         <Doughnut
           data={data}
           options={options}
-          // регестрируем плагины локально, применительно к данному графику
+          // регистрируем плагины локально, применительно к данному графику
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
-          plugins={[centerLabel(total), ChartDataLabels, DoughnutLegend]}
+          plugins={[CenterLabel(total), ChartDataLabels, DoughnutLegend]}
           type="doughnut"
         />
       </div>
