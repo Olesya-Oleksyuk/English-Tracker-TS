@@ -1,11 +1,18 @@
 # English-Tracker-TS
+1. [ Видео-демо работы приложения ](#demo)
+2. [ Функционал приложения ](#features)
+3. [ Гайд по запуску в Github Codespace ](#codespace)
+4. [ Гайд по запуску на локальном компьютере ](#local)
+
 
 <a name="demo"></a>
 ### Видео-демо работы приложения:
 https://youtu.be/HVdS67pcJZ8
 
 [![CandyShop](https://img.youtube.com/vi/HVdS67pcJZ8/maxresdefault.jpg)](https://youtu.be/HVdS67pcJZ8)
-Мультиязычное приложение на TypeScript для отслеживания прогресса по изучению английского языка.
+
+<a name="features"></a>
+<br/>Мультиязычное приложение на TypeScript для отслеживания прогресса по изучению английского языка.
 Стек: 
 * <b>React</b>;
 * <b>Redux Toolkit</b> для управления состоянием: <b>asyncThunk</b> middleware для имитации асинхронной 
